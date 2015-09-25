@@ -9,8 +9,13 @@ Inject service in controller and interact with local storage
 
 ```javascript
 app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
+  // Single Value
   $localStorage.set('key', 'Hello');
+  alert($localStorage.get('key'));
   
-  alert($localStorage.get('key));
+  // Object
+  $localStorage.setObj('key', {title: 'Hello'});
+  var obj = $localStorage.getObj('key');
+  alert(obj.title);
 }
 ```
