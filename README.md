@@ -2,7 +2,9 @@
 angular module for simply use browser local storage 
 
 ## Add module on your angular app
+```javascript
 var app = angular.module('app', ['ngStorage']);
+```
 
 ## Using it in controller
 Inject service in controller and interact with local storage
