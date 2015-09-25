@@ -1,5 +1,5 @@
 # ngStorage
-angular module for simply use browser local storage 
+angular module for simply use browser local storage in web and mobile app.
 
 ## Add module on your angular app
 ```javascript
