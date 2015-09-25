@@ -15,7 +15,7 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
   $localStorage.set('key', 'Hello');
   alert($localStorage.get('key'));
   
-  // Object
+  // JSON Object
   $localStorage.setObj('key', {title: 'Hello'});
   var obj = $localStorage.getObj('key');
   alert(obj.title);
