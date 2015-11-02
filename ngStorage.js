@@ -6,23 +6,29 @@ angular.module('ngStorage', [])
 .factory('$localStorage', ['$window', function($window){
 	return {
 		set: function(key, obj){
-			return $window.localStorage[key] = obj;
+			if(typeof obj === "object" && Array.isArray(obj))
+				return $window.localStorage.setItem(key, JSON.stringify(obj));
+			else
+				return $window.localStorage.setItem(key, obj);
 		},
+		
 		get: function(key){
-			if($window.localStorage[key]===null)
-				return false;
-			else
-				return $window.localStorage[key];
+			try{
+				//Verifico se un oggetto
+				var value = JSON.parse($window.localStorage.getItem(key));
+				if(value === null)
+					return false;
+				else
+					return value;
+				
+			}catch(e){ //Altrimenti stringa semplice
+				if($window.localStorage[key] === null)
+					return false;
+				else
+					return $window.localStorage[key];
+			}
 		},
-		setObj: function(key, obj){
-			return $window.localStorage.setItem(key, JSON.stringify(obj));
-		},
-		getObj: function(key){
-			if($window.localStorage.getItem(key)===null)
-				return false;
-			else
-				return JSON.parse($window.localStorage.getItem(key));
-		},
+
 		remove: function(key){
 			return $window.localStorage.removeItem(key);
 		}
