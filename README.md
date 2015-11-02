@@ -20,7 +20,12 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
   console.log($localStorage.get('key2'));
   
   // Array of Objects
-  $localStorage.set('key2', [{title: 'Hello'}, {title: 'World'}]);
-  console.log($localStorage.get('key2'));
+  $localStorage.set('key3', [{title: 'Hello'}, {title: 'World'}]);
+  console.log($localStorage.get('key3'));
+  
+  // Remove
+  $localStorage.remove('key1');
+  $localStorage.remove('key2');
+  $localStorage.remove('key3');
 }
 ```
