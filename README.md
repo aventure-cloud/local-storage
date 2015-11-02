@@ -1,9 +1,9 @@
-# ngStorage
+# webStorage
 angular module for simply save data (single values, object, array) into browser local storage for web and mobile app.
 
 ## Add module on your angular app
 ```javascript
-var app = angular.module('app', ['ngStorage']);
+var app = angular.module('app', ['webStorage']);
 ```
 
 ## Using it in controller
