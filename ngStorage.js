@@ -6,7 +6,7 @@ angular.module('ngStorage', [])
 .factory('$localStorage', ['$window', function($window){
 	return {
 		set: function(key, obj){
-			if(typeof obj === "object" && Array.isArray(obj))
+			if(typeof obj === "object" || Array.isArray(obj))
 				return $window.localStorage.setItem(key, JSON.stringify(obj));
 			else
 				return $window.localStorage.setItem(key, obj);
@@ -30,7 +30,15 @@ angular.module('ngStorage', [])
 		},
 
 		remove: function(key){
-			return $window.localStorage.removeItem(key);
+			if(Array.isArray(key)){
+				var result = false;
+				angular.forEach(key, function(item){
+					result = $window.localStorage.removeItem(item);
+				});
+				return result;
+			}
+			else
+				return $window.localStorage.removeItem(key);
 		}
 	};
 }]);
