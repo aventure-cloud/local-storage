@@ -25,7 +25,7 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
   
   // Remove single key
   $localStorage.remove('key1');
-  //remove multiple keys at the same time
+  // Remove multiple keys at the same time
   $localStorage.remove(['key2', key3]);
 }
 ```
