@@ -2,7 +2,7 @@
  * Save in local storage single variable or JSON object
  */
 
-angular.module('ngStorage', [])
+angular.module('webStorage', [])
 .factory('$localStorage', ['$window', function($window){
 	return {
 		set: function(key, obj){
