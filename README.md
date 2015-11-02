@@ -1,5 +1,5 @@
 # ngStorage
-angular module for simply use browser local storage in web and mobile app.
+angular module for simply save data (single values, object, array) into browser local storage for web and mobile app.
 
 ## Add module on your angular app
 ```javascript
@@ -7,17 +7,20 @@ var app = angular.module('app', ['ngStorage']);
 ```
 
 ## Using it in controller
-Inject service in controller and interact with local storage
+Inject service in controller and save single values, object or array in local storage
 
 ```javascript
 app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
   // Single Value
-  $localStorage.set('key', 'Hello');
-  alert($localStorage.get('key'));
+  $localStorage.set('key1', 'Hello');
+  console.log($localStorage.get('key1'));
   
   // JSON Object
-  $localStorage.setObj('key', {title: 'Hello'});
-  var obj = $localStorage.getObj('key');
-  alert(obj.title);
+  $localStorage.set('key2', {title: 'Hello'});
+  console.log($localStorage.get('key2'));
+  
+  // Array of Objects
+  $localStorage.set('key2', [{title: 'Hello'}, {title: 'World'}]);
+  console.log($localStorage.get('key2'));
 }
 ```
