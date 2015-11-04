@@ -52,7 +52,7 @@ angular.module('webStorage', [])
 		prefix: '',
 		
 		setPrefix: function(p){
-			if(typeof item === 'string'){
+			if(typeof p === 'string'){
 				return this.prefix = p;
 			}
 			return false;
