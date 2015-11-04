@@ -62,6 +62,7 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
   $localStorage.remove(['key2', 'key3']);
   
   // Remove all keys in your "prefix namespace"
-  $localStorage.remove($localStorage.getKeys());
+  //if you don't declare your personal "prefix" this call will delete all local storage
+  $localStorage.clear();
 }
 ```
