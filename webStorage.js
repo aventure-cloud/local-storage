@@ -6,42 +6,70 @@
  */
 
 angular.module('webStorage', [])
-.factory('$localStorage', ['$window', function($window){
+.factory('$localStorage', ['$window', '$log', function($window, $log){
 	return {
 		set: function(key, obj){
 			if(typeof obj === "object" || Array.isArray(obj))
-				return $window.localStorage.setItem(this.getKey(key), JSON.stringify(obj));
+				return $window.localStorage.setItem(this.composeKey(key), JSON.stringify(obj));
 			else
-				return $window.localStorage.setItem(this.getKey(key), obj);
+				return $window.localStorage.setItem(this.composeKey(key), obj);
 		},
 		
 		get: function(key){
 			try{
 				//Verifico se un oggetto
-				var value = JSON.parse($window.localStorage.getItem(this.getKey(key)));
+				var value = JSON.parse($window.localStorage.getItem(this.composeKey(key)));
 				if(value === null)
 					return false;
 				else
 					return value;
 				
 			}catch(e){ //Altrimenti stringa semplice
-				if($window.localStorage.getItem(this.getKey(key)) === null)
+				if($window.localStorage.getItem(this.composeKey(key)) === null)
 					return false;
 				else
-					return $window.localStorage.getItem(this.getKey(key));
+					return $window.localStorage.getItem(this.composeKey(key));
 			}
+		},
+		
+		getAll: function(){
+			if(this.prefix == '')
+				return $window.localStorage;
+			else{
+				var result = [];
+				for(key in $window.localStorage){
+					if(key.indexOf(this.prefix)!=-1)
+						result[key] = $window.localStorage[key];
+				}
+				return result;
+			}
+		},
+		
+		getKeys: function(){
+			var result = [];
+			for(key in $window.localStorage){
+				if(key.indexOf(this.prefix)!=-1)
+					result.push(key);
+			}
+			return result;
 		},
 
 		remove: function(key){
 			if(Array.isArray(key)){
 				angular.forEach(key, function(item){
 					if(typeof item === 'string')
-						$window.localStorage.removeItem(this.getKey(item));
+						$window.localStorage.removeItem(this.composeKey(item));
+					else
+						$log.warn('Found a no string element in array');
 				});
-				return true;
 			}
+			
+			if(typeof key === 'string')
+				$window.localStorage.removeItem(this.composeKey(key));
 			else
-				return $window.localStorage.removeItem(this.getKey(key));
+				$log.error("Local storage KEY isn't valid");
+
+			return this;
 		},
 		
 		/**
@@ -53,12 +81,17 @@ angular.module('webStorage', [])
 		
 		setPrefix: function(p){
 			if(typeof p === 'string'){
-				return this.prefix = p;
+				this.prefix = p;
+				$log.debug("Setted localStorage prefix = "+this.prefix);
+				return this;
 			}
 			return false;
 		},
 		
-		getKey: function(key){
+		/**
+		 * private method
+		 */
+		composeKey: function(key){
 			return this.prefix+key;
 		}
 	};
