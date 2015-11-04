@@ -3,7 +3,7 @@ angular module for simply save data (single values, object, array) into browser 
 
 ## Add module on your angular app
 ```javascript
-var app = angular.module('app', ['webStorage']);
+var app = angular.module('myAppName', ['webStorage']);
 ```
 
 ## Using prefix
