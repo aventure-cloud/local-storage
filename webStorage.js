@@ -5,99 +5,107 @@
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 
+
 angular.module('webStorage', [])
-.factory('$localStorage', ['$window', '$log', function($window, $log){
+
+.provider('$localStorage', function(){
+	var prefix = '';
+	
 	return {
-		set: function(key, obj){
-			if(typeof obj === "object" || Array.isArray(obj))
-				return $window.localStorage.setItem(this.composeKey(key), JSON.stringify(obj));
-			else
-				return $window.localStorage.setItem(this.composeKey(key), obj);
+		setPrefix: function(p){
+			if(typeof p === 'string'){
+				prefix = p;
+				console.log("Setted localStorage prefix = "+prefix);
+				return this;
+			}
+			return false;
 		},
 		
-		get: function(key){
+		getItem: function(key){
 			try{
 				//Verifico se un oggetto
-				var value = JSON.parse($window.localStorage.getItem(this.composeKey(key)));
+				var value = JSON.parse(window.localStorage.getItem(prefix+key));
 				if(value === null)
 					return false;
 				else
 					return value;
 				
 			}catch(e){ //Altrimenti stringa semplice
-				if($window.localStorage.getItem(this.composeKey(key)) === null)
+				if(window.localStorage.getItem(prefix+key) === null)
 					return false;
 				else
-					return $window.localStorage.getItem(this.composeKey(key));
+					return window.localStorage.getItem(prefix+key);
 			}
 		},
 		
-		getAll: function(){
-			if(this.prefix == '')
-				return $window.localStorage;
-			else{
-				var result = [];
-				for(key in $window.localStorage){
-					if(key.indexOf(this.prefix)!=-1)
-						result[key] = $window.localStorage[key];
-				}
-				return result;
-			}
-		},
-		
-		getKeys: function(){
-			var result = [];
-			for(key in $window.localStorage){
-				if(key.indexOf(this.prefix)!=-1)
-					result.push(key);
-			}
-			return result;
-		},
-
-		remove: function(key){
-			if(Array.isArray(key)){
-				angular.forEach(key, function(item){
-					if(typeof item === 'string')
-						$window.localStorage.removeItem(this.composeKey(item));
+		$get: function($log){
+			return {
+				set: function(key, obj){
+					if(typeof obj === "object" || Array.isArray(obj))
+						return window.localStorage.setItem(this.composeKey(key), JSON.stringify(obj));
 					else
-						$log.warn('Found a no string element in array');
-				});
-			}
-			
-			if(typeof key === 'string')
-				$window.localStorage.removeItem(this.composeKey(key));
-			else
-				$log.error("Local storage KEY isn't valid");
+						return window.localStorage.setItem(this.composeKey(key), obj);
+				},
+				
+				get: this.getItem,
+				
+				getAll: function(){
+					if(prefix == '')
+						return window.localStorage;
+					else{
+						var result = [];
+						for(key in window.localStorage){
+							if(key.indexOf(this.prefix)!=-1)
+								result[key] = window.localStorage[key];
+						}
+						return result;
+					}
+				},
+				
+				getKeys: function(){
+					var result = [];
+					for(key in window.localStorage){
+						if(prefix=='')
+							result.push(key);
+						
+						if(prefix!='' && key.indexOf(prefix)!=-1)
+							result.push(key);
+					}
+					return result;
+				},
 
-			return this;
-		},
-		
-		clear: function(){
-			this.remove(this.getKeys());
-			return this;
-		},
-		
-		/**
-		 * Gestione prefisso comune per tutte le variabili
-		 * In questo modo se si sviluppano più applicazioni non si rischia
-		 * di sovrapporre (e quindi sovrascrivere) delle variabili local Storage esistenti.
-		 */
-		prefix: '',
-		
-		setPrefix: function(p){
-			if(typeof p === 'string'){
-				this.prefix = p;
-				$log.debug("Setted localStorage prefix = "+this.prefix);
-				return this;
-			}
-			return false;
-		},
-		
-		/**
-		 * private method
-		 */
-		composeKey: function(key){
-			return this.prefix+key;
+				remove: function(key){
+					if(Array.isArray(key)){
+						$log.debug("local Storage Key is ARRAY");
+						for(var i=0; i<key.length; i++){
+							if(typeof key[i] === 'string')
+								window.localStorage.removeItem(key[i]);
+							else
+								$log.warn('Found a no string element in array');
+						}
+					}else if(typeof key === 'string'){
+						$log.debug("local Storage Key is STRING");
+						window.localStorage.removeItem(this.composeKey(key));
+					}
+					else
+						$log.error("Local storage KEY isn't valid");
+
+					return this;
+				},
+				
+				clear: function(){
+					$log.warn(this.getKeys());
+					this.remove(this.getKeys());
+					return this;
+				},
+				
+				/**
+				 * private method
+				 */
+				composeKey: function(key){
+					return prefix+key;
+				}
+			};
 		}
-	};
-}]);
+	}
+});
