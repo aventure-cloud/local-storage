@@ -6,6 +6,7 @@
  */
 
 
+
 angular.module('webStorage', [])
 
 .provider('$localStorage', function(){
