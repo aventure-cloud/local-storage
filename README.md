@@ -16,7 +16,8 @@ app.run(['$localStorage', function($localStorage){
 ```
 Add prefix is similar to create a "namespace" for your app. If you set prefix, it will be added automatically in all future call to manage only local storage params with your namespace.
 
-## Get
+# Get & Set
+## Single value
 Inject service in controller and use it.
 
 ```javascript
