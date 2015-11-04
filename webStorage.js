@@ -10,38 +10,56 @@ angular.module('webStorage', [])
 	return {
 		set: function(key, obj){
 			if(typeof obj === "object" || Array.isArray(obj))
-				return $window.localStorage.setItem(key, JSON.stringify(obj));
+				return $window.localStorage.setItem(this.getKey(key), JSON.stringify(obj));
 			else
-				return $window.localStorage.setItem(key, obj);
+				return $window.localStorage.setItem(this.getKey(key), obj);
 		},
 		
 		get: function(key){
 			try{
 				//Verifico se un oggetto
-				var value = JSON.parse($window.localStorage.getItem(key));
+				var value = JSON.parse($window.localStorage.getItem(this.getKey(key)));
 				if(value === null)
 					return false;
 				else
 					return value;
 				
 			}catch(e){ //Altrimenti stringa semplice
-				if($window.localStorage[key] === null)
+				if($window.localStorage.getItem(this.getKey(key)) === null)
 					return false;
 				else
-					return $window.localStorage[key];
+					return $window.localStorage.getItem(this.getKey(key));
 			}
 		},
 
 		remove: function(key){
 			if(Array.isArray(key)){
-				var result = false;
 				angular.forEach(key, function(item){
-					result = $window.localStorage.removeItem(item);
+					if(typeof item === 'string')
+						$window.localStorage.removeItem(this.getKey(item));
 				});
-				return result;
+				return true;
 			}
 			else
-				return $window.localStorage.removeItem(key);
+				return $window.localStorage.removeItem(this.getKey(key));
+		},
+		
+		/**
+		 * Gestione prefisso comune per tutte le variabili
+		 * In questo modo se si sviluppano più applicazioni non si rischia
+		 * di sovrapporre (e quindi sovrascrivere) delle variabili local Storage esistenti.
+		 */
+		prefix: '',
+		
+		setPrefix: function(p){
+			if(typeof item === 'string'){
+				return this.prefix = p;
+			}
+			return false;
+		},
+		
+		getKey: function(key){
+			return this.prefix+key;
 		}
 	};
 }]);
