@@ -6,6 +6,15 @@ angular module for simply save data (single values, object, array) into browser 
 var app = angular.module('app', ['webStorage']);
 ```
 
+## Using prefix
+You can use prefix before each variable name to distinguish same variable name between more apps.
+
+```javascript
+app.run(['$localStorage', function($localStorage){
+  $localStorage.setPrefix('myAppName_');
+}]);
+```
+
 ## Using it in controller
 Inject service in controller and save single values, object or array in local storage
 
