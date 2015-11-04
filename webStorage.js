@@ -72,6 +72,11 @@ angular.module('webStorage', [])
 			return this;
 		},
 		
+		clear: function(){
+			this.remove(this.getKeys());
+			return this;
+		},
+		
 		/**
 		 * Gestione prefisso comune per tutte le variabili
 		 * In questo modo se si sviluppano più applicazioni non si rischia
