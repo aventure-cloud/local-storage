@@ -14,7 +14,7 @@ app.run(['$localStorage', function($localStorage){
   $localStorage.setPrefix('myAppName_');
 }]);
 ```
-Add prefix is similar to create a "namespace" for your app. If you set prefix, it will be added automatically in all future call to manage only local storage params with your namespace.
+Add prefix is similar to create a "namespace" for your app. If you set prefix, it will be added automatically in all future call to manage only local storage params in your namespace.
 
 # Get & Set
 ## Single value
