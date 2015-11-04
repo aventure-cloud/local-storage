@@ -19,7 +19,7 @@ app.config(['$localStorageProvider', function($localStorageProvider){
 
 }]);
 ```
-Add prefix is similar to create a "namespace" for your app. If you set prefix, it will be added automatically in all future call to manage only local storage params in your namespace.
+Add prefix is similar to create a "namespace" for your app. If you set prefix, it will be added automatically in all subsequent calls to manage only local storage params in your namespace.
 
 # Get & Set
 Inject service in controller and use it.
