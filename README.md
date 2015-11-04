@@ -7,11 +7,16 @@ var app = angular.module('myAppName', ['webStorage']);
 ```
 
 ## Using prefix
-You can use prefix that will be added before each variable name to distinguish same variable name between more apps.
+You can set prefix that will be added before each variable name to distinguish same variable name between more apps.
 
 ```javascript
-app.run(['$localStorage', function($localStorage){
-  $localStorage.setPrefix('myAppName_');
+app.config(['$localStorageProvider', function($localStorageProvider){
+
+	/*
+	 * Set local storage Namespace
+	 */
+  $localStorageProvider.setPrefix('myAppName_');
+
 }]);
 ```
 Add prefix is similar to create a "namespace" for your app. If you set prefix, it will be added automatically in all future call to manage only local storage params in your namespace.
@@ -21,7 +26,7 @@ Add prefix is similar to create a "namespace" for your app. If you set prefix, i
 Inject service in controller and use it.
 
 ```javascript
-app.run(['$localStorage', function($localStorage){
+app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 
   $localStorage.set('key1', 'Hello');
   console.log($localStorage.get('key1'));
