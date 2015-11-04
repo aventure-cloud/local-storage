@@ -7,7 +7,7 @@ var app = angular.module('myAppName', ['webStorage']);
 ```
 
 ## Using prefix
-You can use prefix before each variable name to distinguish same variable name between more apps.
+You can use prefix that will be added before each variable name to distinguish same variable name between more apps.
 
 ```javascript
 app.run(['$localStorage', function($localStorage){
