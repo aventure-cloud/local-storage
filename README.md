@@ -22,9 +22,9 @@ app.config(['$localStorageProvider', function($localStorageProvider){
 Add prefix is similar to create a "namespace" for your app. If you set prefix, it will be added automatically in all future call to manage only local storage params in your namespace.
 
 # Get & Set
-## Single value
 Inject service in controller and use it.
 
+## Single value
 ```javascript
 app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 
