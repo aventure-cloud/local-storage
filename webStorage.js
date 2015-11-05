@@ -106,32 +106,24 @@ angular.module('webStorage', [])
 	};
 	
 	
-	/**
-	 * Return Object with Provider and Service
-	 */
 	return {
 		/** start: Provider ($localStorageProvider) */
 		setPrefix: _setPrefix,
-		
-		getItem: _getItem,
+		get: _getItem,
 		/** end: Provider */
+		
 		
 		/** start: Service ($localStorage) */
 		$get: function(){
 			return {
 				set: _set,
-				
 				get: _getItem,
-				
 				getAll: _getAll,
-				
 				getKeys: _getKeys,
-
 				remove: _remove,
-				
 				clear: _clear
 			};
 		}
-	/** end: Service */
+		/** end: Service */
 	}
 });
