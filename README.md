@@ -3,7 +3,7 @@ Angular module for simply save data (single values, object, array) into browser 
 
 Local storage allow to store only string data type. This module allow you to store JSON objects and Array also using serialization. You can store any type of structured data with a single method.
 
-### Link modulo in your HTML
+### Link module in your HTML
 ```html
 <script src="js/lib/webStorage.js" grunt-export="true"></script>
 ```
