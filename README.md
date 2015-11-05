@@ -1,12 +1,12 @@
 # webStorage
 angular module for simply save data (single values, object, array) into browser local storage for web and mobile app.
 
-## Add module on your angular app
+### Add module on your angular app
 ```javascript
 var app = angular.module('myAppName', ['webStorage']);
 ```
 
-## Using prefix
+### Using prefix
 You can set prefix that will be added before each variable name to distinguish same variable name between more apps.
 
 ```javascript
@@ -24,7 +24,7 @@ Add prefix is similar to create a "namespace" for your app. If you set prefix, i
 # Get & Set
 Inject service in controller and use it.
 
-## Single value
+### Single value
 ```javascript
 app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 
@@ -34,7 +34,7 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 }]);
 ```
 
-## JSON Object
+### JSON Object
 ```javascript
 app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 
@@ -45,7 +45,7 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 }
 ```
 
-## Array 
+### Array 
 ```javascript
 app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 
@@ -56,7 +56,7 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 }
 ```
 
-## Remove
+# Remove
 ```javascript
 app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 
