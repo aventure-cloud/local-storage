@@ -5,8 +5,6 @@
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
 
-
-
 angular.module('webStorage', [])
 
 .provider('$localStorage', function(){
