@@ -5,7 +5,7 @@ Local storage allow to store only string data type. This module allow you to sto
 
 ### Link module in your HTML
 ```html
-<script src="js/lib/webStorage.js" grunt-export="true"></script>
+<script src="js/webStorage.js"></script>
 ```
 
 ### Add module on your angular app
