@@ -16,6 +16,8 @@ var app = angular.module('myAppName', ['webStorage']);
 ### Using prefix
 You can set prefix that will be added before each variable name to distinguish same variable name between more apps.
 
+You can perform this task using Provider in Angular config method. In this way you are sure that your namespace is configured when app start. 
+
 ```javascript
 app.config(['$localStorageProvider', function($localStorageProvider){
 
