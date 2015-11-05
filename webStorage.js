@@ -21,7 +21,7 @@ angular.module('webStorage', [])
 	var _setPrefix = function(p){
 		if(typeof p === 'string'){
 			prefix = p;
-			console.log("Setted localStorage prefix = "+prefix);
+			console.log("Setted localStorage namespace = "+prefix);
 			return this;
 		}
 		return false;
