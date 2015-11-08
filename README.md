@@ -46,7 +46,7 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 ```
 
 ### JSON Object
-When you put JSON object into set method, webStorage recognizes input and it serialize object. When you call get, webStorage return you original object.
+When you put JSON object into set method, webStorage recognizes input and it serialize object. When you call get, webStorage return your original object.
 ```javascript
 app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 
