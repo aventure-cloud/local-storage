@@ -1,3 +1,5 @@
+"use strict" ;
+
 /**
  * webStorage - save data (single values, object, array) into browser local storage for web and mobile app.
  * @author: Valerio Barbera - valerio@aventuresrl.com
