@@ -29,6 +29,9 @@ angular.module('webStorage', [])
 		return false;
 	};
 	
+	/**
+	 * private method
+	 */
 	var _composeKey = function(key){
 		return prefix+key;
 	}
@@ -57,6 +60,10 @@ angular.module('webStorage', [])
 			return window.localStorage.setItem(_composeKey(key), obj);
 	};
 	
+	/**
+	 * Return array key=>value defined under your namespace.
+	 * If you don't declare namespace the method return all local storage
+	 */
 	var _getAll = function(){
 		if(prefix == '')
 			return window.localStorage;
@@ -70,6 +77,10 @@ angular.module('webStorage', [])
 		}
 	};
 	
+	/**
+	 * Retrieve all keys in your namespace.
+	 * If you don't declare namespace the method return all local storage keys
+	 */
 	var _getKeys = function(){
 		var result = [];
 		for(key in window.localStorage){
@@ -82,6 +93,10 @@ angular.module('webStorage', [])
 		return result;
 	};
 	
+	/**
+	 * You can inject single keys in simple String format, or array of string 
+	 * to delete multiple keys at the same time 
+	 */
 	var _remove = function(key){
 		if(Array.isArray(key)){
 			$log.debug("local Storage Key is ARRAY");
@@ -101,6 +116,10 @@ angular.module('webStorage', [])
 		return this;
 	};
 	
+	/**
+	 * Remove all object under your namespace.
+	 * If you don't declare namespace the method clear entire local storage.
+	 */
 	var _clear = function(){
 		$log.warn(this.getKeys());
 		this.remove(this.getKeys());
