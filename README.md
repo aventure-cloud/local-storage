@@ -62,7 +62,7 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 
   // Array of Objects
-  $localStorage.set('key3', [{title: 'Array o objects'}, {title: 'Array o objects'}]);
+  $localStorage.set('key3', [{title: 'Array of objects'}, {title: 'Array of objects'}]);
   console.log($localStorage.get('key3'));
   
 }
