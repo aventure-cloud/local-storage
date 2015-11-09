@@ -10,7 +10,7 @@ Local storage allow to store only string data type. This module allow you to sto
 
 ### Add module on your angular app
 ```javascript
-var app = angular.module('myAppName', ['webStorage']);
+var app = angular.module('myApp', ['webStorage']);
 ```
 
 ### Using prefix
@@ -24,7 +24,7 @@ app.config(['$localStorageProvider', function($localStorageProvider){
 	/*
 	 * Set local storage Namespace
 	 */
-  $localStorageProvider.setPrefix('myAppName_');
+  	$localStorageProvider.setPrefix('myApp_');
 
 }]);
 ```
@@ -39,7 +39,7 @@ Classic usage of local storage.
 ```javascript
 app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 
-  $localStorage.set('key1', 'Hello');
+  $localStorage.set('key1', 'Single value');
   console.log($localStorage.get('key1'));
 
 }]);
@@ -51,7 +51,7 @@ When you put JSON object into set method, webStorage recognizes input and it ser
 app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 
   // JSON Object
-  $localStorage.set('key2', {title: 'Hello'});
+  $localStorage.set('key2', {title: 'JSON Object'});
   console.log($localStorage.get('key2'));
   
 }
@@ -62,7 +62,7 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 
   // Array of Objects
-  $localStorage.set('key3', [{title: 'Hello'}, {title: 'World'}]);
+  $localStorage.set('key3', [{title: 'Array o objects'}, {title: 'Array o objects'}]);
   console.log($localStorage.get('key3'));
   
 }

@@ -82,11 +82,11 @@ angular.module('webStorage', [])
 	 * If you don't declare namespace the method return all local storage keys
 	 */
 	var _getKeys = function(){
-		var result = [];
+		var result = [], key='';
 		for(key in window.localStorage){
 			if(prefix=='')
 				result.push(key);
-			else if(prefix!='' && key.indexOf(prefix)!=-1)
+			else if(key.indexOf(prefix)!=-1)
 				result.push(key);
 		}
 		$log.debug(result);
@@ -99,7 +99,7 @@ angular.module('webStorage', [])
 	 */
 	var _remove = function(key){
 		if(Array.isArray(key)){
-			$log.debug("local Storage Key is ARRAY");
+			$log.debug("Deleting array of Keys");
 			for(var i=0; i<key.length; i++){
 				if(typeof key[i] === 'string')
 					window.localStorage.removeItem(key[i]);
@@ -107,7 +107,7 @@ angular.module('webStorage', [])
 					$log.warn('Found a no string element in array');
 			}
 		}else if(typeof key === 'string'){
-			$log.debug("local Storage Key is STRING");
+			$log.debug("Deleting single Key");
 			window.localStorage.removeItem(_composeKey(key));
 		}
 		else
@@ -121,7 +121,7 @@ angular.module('webStorage', [])
 	 * If you don't declare namespace the method clear entire local storage.
 	 */
 	var _clear = function(){
-		$log.warn(this.getKeys());
+		$log.warn("Called Clear()");
 		this.remove(this.getKeys());
 		return this;
 	};

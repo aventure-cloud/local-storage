@@ -1,0 +1,56 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+	<meta charset="UTF-8" />
+	<title>webStorage example</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+	<script src="webStorage.js"></script>
+	
+	<script>
+	angular.module('myApp', ['webStorage'])
+	
+	.config(['$localStorageProvider', function($localStorageProvider){
+
+	    /*
+	     * Set local storage Namespace
+	     */
+		$localStorageProvider.setPrefix('myApp_');
+		
+	}])
+	
+	.controller('ExampleCtrl', ['$localStorage', function($localStorage){
+
+		// Single value
+		$localStorage.set('key1', 'Single value');
+		console.log($localStorage.get('key1'));
+
+		// JSON Object
+		$localStorage.set('key2', {title: 'JSON Object'});
+		console.log($localStorage.get('key2'));
+
+		// Array of Objects
+		$localStorage.set('key3', [{title: 'Array o objects'}, {title: 'Array o objects'}]);
+		console.log($localStorage.get('key3'));
+
+		//##############
+		  
+		// Remove single key
+		$localStorage.remove('key1');
+
+		// Remove multiple keys at the same time
+		$localStorage.remove(['key2', 'key3']);
+
+		// Remove all keys in your "prefix namespace"
+		//if you don't declare your personal "prefix" this call will delete all local storage
+		$localStorage.clear();
+	}]);
+	</script>
+</head>
+<body ng-controller="ExampleCtrl">
+
+	<h1>webStorage</h1>
+	Open browser console and read message generated from javascript example.
+	
+</body>
+</html>
