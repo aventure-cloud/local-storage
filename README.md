@@ -85,4 +85,4 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
   $localStorage.clear();
 }
 ```
-Attention when using clear() without set prefix namespace. It is very likely that you will lose the data of other applications.
+Attention when using clear() without set prefix namespace. It is very likely that you will lose data of others applications.
