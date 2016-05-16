@@ -3,7 +3,7 @@ For an introduction see this article: http://developerdynamo.it/2016/04/05/una-l
 
 Angular module for simply save data (single values, object, array) into browser local storage for web and mobile app.
 
-Local storage allow you to store only string data type. This module allow you to store JSON objects and Array also using just one method. 
+Local storage allow you to store only primitive data type. This module allow you to store JSON objects and Array also using just one method. 
 
 ### Link module in your HTML
 ```html
