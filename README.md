@@ -1,4 +1,6 @@
 # webStorage
+For an introduction see this article: http://developerdynamo.it/2016/04/05/una-libreria-per-gestire-il-localstorage-delle-tue-applicazioni-in-modo-intelligente/
+
 You can store any type of structured data with a single method.
 
 Angular module for simply save data (single values, object, array) into browser local storage for web and mobile app.
