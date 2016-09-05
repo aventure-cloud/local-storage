@@ -2,6 +2,7 @@
   "name": "webStorage",
   "main": "webStorage.min.js",
   "homepage": "https://github.com/developerdynamo/webStorage",
+  "version": "0.1.2",
   "authors": [
     "Valerio Barbera <valerio@aventuresrl.com>"
   ],
