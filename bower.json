@@ -1,0 +1,17 @@
+{
+  "name": "webStorage",
+  "main": "webStorage.min.js",
+  "homepage": "https://github.com/developerdynamo/webStorage",
+  "authors": [
+    "Valerio Barbera <valerio@aventuresrl.com>"
+  ],
+  "description": "Angular service to manage localStorage for multiple app",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
