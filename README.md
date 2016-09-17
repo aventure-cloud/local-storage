@@ -21,33 +21,33 @@ You can set prefix that will be added before each variable name to distinguish s
 You can perform this task using Provider in Angular config method. In this way you are sure that your namespace is configured when app start. 
 
 ```javascript
-app.config(['$localStorageProvider', function($localStorageProvider){
+app.config(function($localStorageProvider){
 
 	/*
 	 * Set local storage Namespace
 	 */
   	$localStorageProvider.setPrefix('myApp_');
 
-}]);
+});
 ```
 Add prefix is similar to create a "namespace" for your app. If you set prefix, all subsequent operation (get, set, remove) will take effect on local storage params created under this prefix namespace.
 Into more apps you can use the same local storage params names but with different prefix they do not overwrite.
 
-# Get & Set
+## Get & Set
 Inject service in controller and use it.
 
-### Single value
+#### Single value
 Classic usage of local storage.
 ```javascript
-app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
+app.controller('ExampleCtrl', function($localStorage){
 
   $localStorage.set('key1', 'Single value');
   console.log($localStorage.get('key1'));
 
-}]);
+});
 ```
 
-### JSON Object
+#### JSON Object
 When you put JSON object into set method, webStorage recognizes input and it serialize object. When you call get, webStorage return your original object.
 ```javascript
 app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
@@ -56,10 +56,10 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
   $localStorage.set('key2', {title: 'JSON Object'});
   console.log($localStorage.get('key2'));
   
-}
+})
 ```
 
-### Array 
+#### Array 
 ```javascript
 app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 
@@ -67,10 +67,10 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
   $localStorage.set('key3', [{title: 'Array of objects'}, {title: 'Array of objects'}]);
   console.log($localStorage.get('key3'));
   
-}
+})
 ```
 
-# Remove
+## Remove
 ```javascript
 app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 
@@ -83,6 +83,66 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
   // Remove all keys in your "prefix namespace"
   //if you don't declare your personal "prefix" this call will delete all local storage
   $localStorage.clear();
-}
+})
 ```
 Attention when using clear() without set prefix namespace. It is very likely that you will lose data of others applications.
+
+#Data Bridge
+WebStorage includes `$dataBridge` service to give you more advantage using this `$localStorage` concept. $dataBridge service is a useful solution to exchange data between two or more controllers.
+
+Below an usage example:
+```javascript
+
+//Ctrl_1 put data in $dataBridge
+app.controller('Ctrl_1', function($dataBridge){
+    
+    var person = {
+        first_name: 'Developer',
+        last_name: 'Dynamo',
+        age: '20'
+    };
+    
+    $dataBridge.set('key1', person);
+    
+})
+
+//Ctrl_2 can retrieve data from $dataBridge
+app.controller('Ctrl_2', function($dataBridge){
+    
+    //Retrieve object in another controller
+    console.log( $dataBridge.set('key1', person) );
+    
+})
+```
+
+##Persistance
+`$dataBridge` is a simple AngularJS Service that contains data in "temporary mode" so if you refresh your browser $dataBridge lose data and in console you will see "null".
+
+If you want put data into $dataBridge service you can call "set" method adding a third parameter called "persistance".
+
+If you set this flag "true" service use $localStorage to store your key/value pair. Using $localStorage service the data are stored permanently into the browser and you can benefits of "Prefix Namespace" also.
+
+```javascript
+
+//Ctrl_1 put data in $dataBridge with persistance flag
+app.controller('Ctrl_1', function($dataBridge){
+    
+    var person = {
+        first_name: 'Developer',
+        last_name: 'Dynamo',
+        age: '20'
+    };
+    
+    $dataBridge.set('key1', person, true);
+    
+})
+
+//Ctrl_2 can retrieve data from $dataBridge 
+//Data are in the local storage of browser and under your "prefix namespace"
+app.controller('Ctrl_2', function($dataBridge){
+    
+    //Retrieve object in another controller
+    console.log( $dataBridge.set('key1', person) );
+    
+})
+```
