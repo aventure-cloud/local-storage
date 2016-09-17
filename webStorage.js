@@ -147,4 +147,36 @@ angular.module('webStorage', [])
 		}
 		/** end: Service */
 	}
+})
+
+.factory('$dataBridge', function ($localStorage) {
+
+	var _data = {};
+
+	var _persistance = false;
+
+	var _configure = function (config) {
+		_persistance = config.persistance;
+	};
+
+	var _set = function (key, obj, persistance) {
+		if(_persistance || persistance)
+			$localStorage.set(key, obj);
+		else
+			_data[key] = obj;
+		return _data;
+	};
+
+	var _get = function (key) {
+		if(_data[key])
+			return _data[key];
+
+		return $localStorage.get(key);
+	};
+
+	return {
+		configure: _configure,
+		get: _get,
+		set: _set
+	};
 });
