@@ -118,9 +118,9 @@ app.controller('Ctrl_2', function($dataBridge){
 ##Persistance
 `$dataBridge` is a simple AngularJS Service that contains data in "temporary mode" so if you refresh your browser $dataBridge lose data and in console you will see "null".
 
-If you want put data into $dataBridge service you can call "set" method adding a third parameter called "persistance".
+If you want put data into $dataBridge in persistnce mode you can call "set" method adding a third boolean parameter.
 
-If you set this flag "true" service use $localStorage to store your key/value pair. Using $localStorage service the data are stored permanently into the browser and you can benefits of "Prefix Namespace" also.
+If you set this flag "true" the service use $localStorage to store your key/value pair. Using $localStorage service the data are stored permanently into the browser and you can benefits of "Prefix Namespace" also.
 
 ```javascript
 
