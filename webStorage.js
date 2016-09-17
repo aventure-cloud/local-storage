@@ -167,11 +167,21 @@ angular.module('webStorage', [])
 		return _data;
 	};
 
-	var _get = function (key) {
-		if(_data[key])
-			return _data[key];
+	var _get = function (key, remove) {
 
-		return $localStorage.get(key);
+	    var obj = null;
+
+		if(_data[key]){
+		    obj = _data[key];
+            if(remove)
+                delete _data[key];
+        } else {
+            obj = $localStorage.get(key);
+            if(remove)
+                $localStorage.remove(key);
+        }
+
+        return obj;
 	};
 
 	return {

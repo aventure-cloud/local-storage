@@ -110,7 +110,7 @@ app.controller('Ctrl_1', function($dataBridge){
 app.controller('Ctrl_2', function($dataBridge){
     
     //Retrieve object in another controller
-    console.log( $dataBridge.set('key1', person) );
+    console.log( $dataBridge.get('key1') );
     
 })
 ```
@@ -142,7 +142,16 @@ app.controller('Ctrl_1', function($dataBridge){
 app.controller('Ctrl_2', function($dataBridge){
     
     //Retrieve object in another controller
-    console.log( $dataBridge.set('key1', person) );
+    console.log( $dataBridge.get('key1') );
     
+    /*
+     * You can get value and remove it from $dataBridge in the same time
+     * using a flag for second parameter. 
+     */
+     //Log value of object
+    console.log( $dataBridge.get('key1', true) );
+    
+    //Log nothing
+    console.log( $dataBridge.get('key1') );
 })
 ```
