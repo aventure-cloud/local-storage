@@ -90,6 +90,7 @@ Attention when using clear() without set prefix namespace. It is very likely tha
 #Data Bridge
 WebStorage includes `$dataBridge` service to give you more advantage using this `$localStorage` concept. $dataBridge service is a useful solution to exchange data between two or more controllers.
 
+##Passing data between controllers
 Below an usage example:
 ```javascript
 
