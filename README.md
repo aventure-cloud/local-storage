@@ -115,43 +115,17 @@ app.controller('Ctrl_2', function($dataBridge){
 })
 ```
 
-##Persistance
-`$dataBridge` is a simple AngularJS Service that contains data in "temporary mode" so if you refresh your browser $dataBridge lose data and in console you will see "null".
-
-If you want put data into $dataBridge in persistnce mode you can call "set" method adding a third boolean parameter.
-
-If you set this flag "true" the service use $localStorage to store your key/value pair. Using $localStorage service the data are stored permanently into the browser and you can benefits of "Prefix Namespace" also.
-
+##Remove
+You can remove a single element or multiple elements on the same time passing array of keys.
 ```javascript
-
-//Ctrl_1 put data in $dataBridge with persistance flag
-app.controller('Ctrl_1', function($dataBridge){
+app.controller('RemoveCtrl', function($dataBridge){
     
-    var person = {
-        first_name: 'Developer',
-        last_name: 'Dynamo',
-        age: '20'
-    };
+    //Remove one element
+    $dataBridge.remove('key1');
     
-    $dataBridge.set('key1', person, true);
+    //Remove multiple element on the same time
+    $dataBridge.remove(['key1', 'key2', 'key_n']);
     
-})
-
-//Ctrl_2 can retrieve data from $dataBridge 
-//Data are in the local storage of browser and under your "prefix namespace"
-app.controller('Ctrl_2', function($dataBridge){
-    
-    //Retrieve object in another controller
-    console.log( $dataBridge.get('key1') );
-    
-    /*
-     * You can get value and remove it from $dataBridge in the same time
-     * using a flag for second parameter. 
-     */
-     //Log value of object
-    console.log( $dataBridge.get('key1', true) );
-    
-    //Log nothing
-    console.log( $dataBridge.get('key1') );
 })
 ```
+

@@ -149,44 +149,30 @@ angular.module('webStorage', [])
 	}
 })
 
-.factory('$dataBridge', function ($localStorage) {
+.factory('$dataBridge', function () {
 
 	var _data = {};
 
-	var _persistance = false;
-
-	var _configure = function (config) {
-		_persistance = config.persistance;
+	var _get = function (key) {
+		return _data[key];
 	};
 
-	var _set = function (key, obj, persistance) {
-		if(_persistance || persistance)
-			$localStorage.set(key, obj);
-		else
-			_data[key] = obj;
-		return _data;
+	var _set = function (key, obj) {
+		return _data[key] = obj;
 	};
 
-	var _get = function (key, remove) {
+	var _remove = function (key) {
+		if(typeof key !== 'array')
+			key = [key];
 
-	    var obj = null;
-
-		if(_data[key]){
-		    obj = _data[key];
-            if(remove)
-                delete _data[key];
-        } else {
-            obj = $localStorage.get(key);
-            if(remove)
-                $localStorage.remove(key);
-        }
-
-        return obj;
+		angular.forEach(key, function (item) {
+			delete _data[item];
+		});
 	};
 
 	return {
-		configure: _configure,
 		get: _get,
-		set: _set
+		set: _set,
+		remove: _remove
 	};
 });
