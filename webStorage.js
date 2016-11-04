@@ -69,6 +69,7 @@ angular.module('webStorage', [])
 			return window.localStorage;
 		else{
 			var result = [];
+			var key = '';
 			for(key in window.localStorage){
 				if(key.indexOf(prefix)!=-1)
 					result[key] = window.localStorage[key];
