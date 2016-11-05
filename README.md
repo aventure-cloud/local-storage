@@ -127,6 +127,9 @@ app.controller('RemoveCtrl', function($dataBridge){
     //Remove multiple element on the same time
     $dataBridge.remove(['key1', 'key2', 'key_n']);
     
+    //Clear all elements
+    $dataBridge.clear();
+    
 })
 ```
 

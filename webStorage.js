@@ -171,9 +171,14 @@ angular.module('webStorage', [])
 		});
 	};
 
+	var _clear = function () {
+		_data = {};
+	};
+
 	return {
 		get: _get,
 		set: _set,
-		remove: _remove
+		remove: _remove,
+		clear: _clear
 	};
 });
