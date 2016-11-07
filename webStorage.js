@@ -38,19 +38,24 @@ angular.module('webStorage', [])
 	
 	var _getItem = function(key){
 		try{
-			//Verifico se un oggetto
+			//Verifico se sia un oggetto
 			var value = JSON.parse(window.localStorage.getItem(_composeKey(key)));
 			if(value === null)
 				return false;
-			else
-				return value;
+
+			return value;
 			
 		}catch(e){ //Altrimenti stringa semplice
-			if(window.localStorage.getItem(_composeKey(key)) === null)
-				return false;
-			else
+			if(window.localStorage.getItem(_composeKey(key)))
 				return window.localStorage.getItem(_composeKey(key));
+			return false;
 		}
+	};
+
+	var _hasItem = function (key) {
+		if(window.localStorage.getItem(_composeKey(key)))
+			return true;
+		return false;
 	};
 	
 	var _set = function(key, obj){
@@ -140,6 +145,7 @@ angular.module('webStorage', [])
 			return {
 				set: _set,
 				get: _getItem,
+				has: _hasItem,
 				getAll: _getAll,
 				getKeys: _getKeys,
 				remove: _remove,
@@ -162,6 +168,12 @@ angular.module('webStorage', [])
 		return _data[key] = obj;
 	};
 
+	var _has = function (key) {
+		if(_data[key])
+			return true;
+		return false;
+	};
+
 	var _remove = function (key) {
 		if(typeof key !== 'array')
 			key = [key];
@@ -178,6 +190,7 @@ angular.module('webStorage', [])
 	return {
 		get: _get,
 		set: _set,
+		has: _has,
 		remove: _remove,
 		clear: _clear
 	};

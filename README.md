@@ -42,6 +42,11 @@ Classic usage of local storage.
 app.controller('ExampleCtrl', function($localStorage){
 
   $localStorage.set('key1', 'Single value');
+    
+    //Verify with HAS method
+    console.log( $localStorage.has('key1') ); // print TRUE
+    
+    //Print value
   console.log($localStorage.get('key1'));
 
 });
@@ -54,6 +59,11 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 
   // JSON Object
   $localStorage.set('key2', {title: 'JSON Object'});
+    
+    //Verify with HAS method
+    console.log( $localStorage.has('key2') ); // print TRUE
+    
+    //Print value
   console.log($localStorage.get('key2'));
   
 })
@@ -65,6 +75,11 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 
   // Array of Objects
   $localStorage.set('key3', [{title: 'Array of objects'}, {title: 'Array of objects'}]);
+    
+    //Verify with HAS method
+    console.log( $localStorage.has('key3') ); // print TRUE
+    
+    //Print value
   console.log($localStorage.get('key3'));
   
 })
@@ -76,6 +91,9 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 
   // Remove single key
   $localStorage.remove('key1');
+    
+    //Verify with HAS method
+    console.log( $localStorage.has('key1') ); // print FALSE
   
   // Remove multiple keys at the same time
   $localStorage.remove(['key2', 'key3']);
@@ -88,7 +106,8 @@ app.controller('ExampleCtrl', ['$localStorage', function($localStorage){
 Attention when using clear() without set prefix namespace. It is very likely that you will lose data of others applications.
 
 #Data Bridge
-WebStorage includes `$dataBridge` service to give you more advantage using this `$localStorage` concept. $dataBridge service is a useful solution to exchange data between two or more controllers.
+WebStorage includes `$dataBridge` service to give you a useful solution to exchange data between two or more controllers.
+$dataBridge is a dynamic object in memory.
 
 ##Passing data between controllers
 Below an usage example:
@@ -104,6 +123,9 @@ app.controller('Ctrl_1', function($dataBridge){
     };
     
     $dataBridge.set('key1', person);
+    
+    //Verify with HAS method
+    console.log( $dataBridge.has('key1') ); // print TRUE
     
 })
 
@@ -123,6 +145,9 @@ app.controller('RemoveCtrl', function($dataBridge){
     
     //Remove one element
     $dataBridge.remove('key1');
+    
+    //Verify with HAS method
+    console.log( $dataBridge.has('key1') ); // print FALSE
     
     //Remove multiple element on the same time
     $dataBridge.remove(['key1', 'key2', 'key_n']);
