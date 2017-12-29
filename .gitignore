@@ -7,6 +7,7 @@
 .idea/
 node_modules/
 lib/
+.nyc_output/
 
 ## File-based project format:
 *.iws

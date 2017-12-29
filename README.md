@@ -7,7 +7,7 @@ Local storage allow you to store only primitive data type. This module allow you
 
 ### Link module in your HTML
 ```html
-<script src="[path]/webStorage.js"></script>
+<script src="[path]/WebStorage.js"></script>
 ```
 
 ### Add module on your angular app

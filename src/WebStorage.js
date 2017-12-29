@@ -1,25 +1,24 @@
 "use strict";
 
-class LocalStorage {
+class WebStorage {
 
-    init(prefix) {
-        this.setPrefix(prefix);
+    constructor(config) {
+        this.config(config);
     }
 
     /**
-     * Set prefix
+     * Merge user config with default config
      *
-     * @param p
-     * @returns {LocalStorage}
+     * @param config
      */
-    setPrefix(p) {
-        if (typeof p === 'string') {
-            this.prefix = p;
-        } else {
-            this.prefix = '';
-        }
-        console.log("localStorage prefix = " + this.prefix);
-        return this;
+    config(config){
+        this.config =  Object.assign({
+            prefix: 'app_',
+        }, config);
+    }
+
+    get prefix(){
+        return this.config.prefix;
     }
 
     /**
@@ -30,7 +29,7 @@ class LocalStorage {
      * @private
      */
     _composeKey(key) {
-        return this.prefix + key;
+        return this.prefix() + key;
     }
 
     /**
@@ -102,19 +101,21 @@ class LocalStorage {
      *
      * @param key
      * @param value
+     * @returns {WebStorage}
      */
     set(key, value) {
         if (typeof value === "object" || Array.isArray(value))
-            return window.localStorage.setItem(this._composeKey(key), JSON.stringify(value));
+            window.localStorage.setItem(this._composeKey(key), JSON.stringify(value));
         else
-            return window.localStorage.setItem(this._composeKey(key), value);
+            window.localStorage.setItem(this._composeKey(key), value);
+        return this;
     }
 
     /**
      * Remove an item from storage
      *
      * @param key
-     * @returns {LocalStorage}
+     * @returns {WebStorage}
      */
     remove(key) {
         if (Array.isArray(key)) {
@@ -137,3 +138,5 @@ class LocalStorage {
         this.remove(this.getKeys());
     }
 }
+
+export default WebStorage;
