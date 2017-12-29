@@ -5,7 +5,7 @@ Native local storage allow you to store only primitive data type. This module al
 
 ## Install
 ```
-npm install --save local-storage-js
+npm install --save local-storage-bridge
 ```
 
 ### Use
