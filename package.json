@@ -1,11 +1,12 @@
 {
-  "name": "webStorage",
+  "name": "WebStorage",
   "version": "1.0.0",
   "description": "Javascript class to manage localStorage for multiple app istance on the same domain",
   "main": "webStorage.js",
   "scripts": {
     "build": "babel ./src -d ./lib",
-    "test": "nyc mocha --require babel-core/register"
+    "test": "nyc mocha --require babel-core/register",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
