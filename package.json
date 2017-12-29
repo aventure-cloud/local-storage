@@ -4,6 +4,7 @@
   "description": "Javascript class to manage localStorage for multiple app istance on the same domain",
   "main": "webStorage.js",
   "scripts": {
+    "build": "babel ./src -d ./lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/aventure-cloud/webStorage/issues"
   },
-  "homepage": "https://github.com/aventure-cloud/webStorage#readme"
+  "homepage": "https://github.com/aventure-cloud/webStorage#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  }
 }
