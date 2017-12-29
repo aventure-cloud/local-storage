@@ -1,12 +1,12 @@
 {
   "name": "webStorage",
   "main": "webStorage.min.js",
-  "homepage": "https://github.com/developerdynamo/webStorage",
-  "version": "0.1.3",
+  "homepage": "https://github.com/aventure-cloud/webStorage",
+  "version": "1.0.0",
   "authors": [
     "Valerio Barbera <valerio@aventuresrl.com>"
   ],
-  "description": "Angular service to manage localStorage for multiple app",
+  "description": "Javascript class to manage localStorage for multiple app istance on the same domain",
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -14,8 +14,5 @@
     "bower_components",
     "test",
     "tests"
-  ],
-  "dependencies": {
-    "angular": ">=1.3.20"
-  }
+  ]
 }

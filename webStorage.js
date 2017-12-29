@@ -1,197 +1,139 @@
-"use strict" ;
+"use strict";
 
-/**
- * webStorage - Manage data (single values, object, array) in browser local storage for web and mobile app.
- * @author: Valerio Barbera - valerio@aventuresrl.com
- * @version v0.1.2
- * @license MIT License, http://www.opensource.org/licenses/MIT
- */
+class LocalStorage {
 
-angular.module('webStorage', [])
+    init(prefix) {
+        this.setPrefix(prefix);
+    }
 
-.provider('$localStorage', function(){
-	/**
-	 * Retrieve $log service instance to use logging service in provider
-	 */
-	var $log =  angular.injector(['ng']).get('$log');
-	
-	/**
-	 * PREFIX identify a namespace for local storage params stored by service
-	 */
-	var prefix = '';
-	
-	var _setPrefix = function(p){
-		if(typeof p === 'string'){
-			prefix = p;
-			console.log("localStorage namespace = "+prefix);
-			return this;
-		}
-		return false;
-	};
-	
-	/**
-	 * private method
-	 */
-	var _composeKey = function(key){
-		return prefix+key;
-	}
-	
-	var _getItem = function(key){
-		try{
-			//Verifico se sia un oggetto
-			var value = JSON.parse(window.localStorage.getItem(_composeKey(key)));
-			if(value === null)
-				return false;
+    /**
+     * Set prefix
+     *
+     * @param p
+     * @returns {LocalStorage}
+     */
+    setPrefix(p) {
+        if (typeof p === 'string') {
+            this.prefix = p;
+        } else {
+            this.prefix = '';
+        }
+        console.log("localStorage prefix = " + this.prefix);
+        return this;
+    }
 
-			return value;
-			
-		}catch(e){ //Altrimenti stringa semplice
-			if(window.localStorage.getItem(_composeKey(key)))
-				return window.localStorage.getItem(_composeKey(key));
-			return false;
-		}
-	};
+    /**
+     * Build a complete storage key using prefix
+     *
+     * @param key
+     * @returns {*}
+     * @private
+     */
+    _composeKey(key) {
+        return this.prefix + key;
+    }
 
-	var _hasItem = function (key) {
-		if(window.localStorage.getItem(_composeKey(key)))
-			return true;
-		return false;
-	};
-	
-	var _set = function(key, obj){
-		if(typeof obj === "object" || Array.isArray(obj))
-			return window.localStorage.setItem(_composeKey(key), JSON.stringify(obj));
-		else
-			return window.localStorage.setItem(_composeKey(key), obj);
-	};
-	
-	/**
-	 * Return array key=>value defined under your namespace.
-	 * If you don't declare namespace the method return all local storage
-	 */
-	var _getAll = function(){
-		if(prefix == '')
-			return window.localStorage;
-		else{
-			var result = [];
-			var key = '';
-			for(key in window.localStorage){
-				if(key.indexOf(prefix)!=-1)
-					result[key] = window.localStorage[key];
-			}
-			return result;
-		}
-	};
-	
-	/**
-	 * Retrieve all keys in your namespace.
-	 * If you don't declare namespace the method return all local storage keys
-	 */
-	var _getKeys = function(){
-		var result = [], key='';
-		for(key in window.localStorage){
-			if(prefix=='')
-				result.push(key);
-			else if(key.indexOf(prefix)!=-1)
-				result.push(key);
-		}
-		$log.debug(result);
-		return result;
-	};
-	
-	/**
-	 * You can inject single keys in simple String format, or array of string 
-	 * to delete multiple keys at the same time 
-	 */
-	var _remove = function(key){
-		if(Array.isArray(key)){
-			$log.debug("Deleting array of Keys");
-			for(var i=0; i<key.length; i++){
-				if(typeof key[i] === 'string')
-					window.localStorage.removeItem(key[i]);
-				else
-					$log.warn('Found a no string element in array');
-			}
-		}else if(typeof key === 'string'){
-			$log.debug("Deleting single Key");
-			window.localStorage.removeItem(_composeKey(key));
-		}
-		else
-			$log.error("Local storage KEY isn't valid");
+    /**
+     * Check if exists a key in the storage
+     *
+     * @param key
+     * @returns {string | null}
+     */
+    has(key) {
+        return window.localStorage.getItem(this._composeKey(key));
+    }
 
-		return this;
-	};
-	
-	/**
-	 * Remove all object under your namespace.
-	 * If you don't declare namespace the method clear entire local storage.
-	 */
-	var _clear = function(){
-		$log.warn("Called Clear()");
-		this.remove(this.getKeys());
-		return this;
-	};
-	
-	
-	return {
-		/** start: Provider ($localStorageProvider) */
-		setPrefix: _setPrefix,
-		get: _getItem,
-		/** end: Provider */
-		
-		
-		/** start: Service ($localStorage) */
-		$get: function(){
-			return {
-				set: _set,
-				get: _getItem,
-				has: _hasItem,
-				getAll: _getAll,
-				getKeys: _getKeys,
-				remove: _remove,
-				clear: _clear
-			};
-		}
-		/** end: Service */
-	}
-})
+    /**
+     * Retrieve a value from storage
+     *
+     * @param key
+     * @returns {*}
+     */
+    get(key) {
+        try {
+            //Verifico se sia un oggetto
+            let value = JSON.parse(window.localStorage.getItem(this._composeKey(key)));
+            if (value === null)
+                return false;
 
-.factory('$dataBridge', function () {
+            return value;
 
-	var _data = {};
+        } catch (e) { // Otherwise simple string
+            if (window.localStorage.getItem(this._composeKey(key)))
+                return window.localStorage.getItem(this._composeKey(key));
+            return false;
+        }
+    }
 
-	var _get = function (key) {
-		return _data[key];
-	};
+    /**
+     * Retrieve all storage content under prefix
+     *
+     * @returns {Array}
+     */
+    all() {
+        let result = [];
+        for (let key in window.localStorage) {
+            if (key.indexOf(this.prefix) !== -1) {
+                result[key] = window.localStorage[key];
+            }
+        }
+        return result;
+    }
 
-	var _set = function (key, obj) {
-		return _data[key] = obj;
-	};
+    /**
+     * Get all storage's keys
+     *
+     * @returns {Array}
+     */
+    getKeys() {
+        let result = [];
+        for (let key in window.localStorage) {
+            if (this.prefix === '') {
+                result.push(key);
+            } else if (key.indexOf(this.prefix) !== -1) {
+                result.push(key);
+            }
+        }
+        return result;
+    }
 
-	var _has = function (key) {
-		if(_data[key])
-			return true;
-		return false;
-	};
+    /**
+     * Add a new value or update if key just exists
+     *
+     * @param key
+     * @param value
+     */
+    set(key, value) {
+        if (typeof value === "object" || Array.isArray(value))
+            return window.localStorage.setItem(this._composeKey(key), JSON.stringify(value));
+        else
+            return window.localStorage.setItem(this._composeKey(key), value);
+    }
 
-	var _remove = function (key) {
-		if(typeof key !== 'array')
-			key = [key];
+    /**
+     * Remove an item from storage
+     *
+     * @param key
+     * @returns {LocalStorage}
+     */
+    remove(key) {
+        if (Array.isArray(key)) {
+            for (let i = 0; i < key.length; i++) {
+                if (typeof key[i] === 'string' && this.has(key)) {
+                    window.localStorage.removeItem(key[i]);
+                }
+            }
+        } else if (typeof key === 'string' && this.has(key)) {
+            window.localStorage.removeItem(this._composeKey(key));
+        }
 
-		angular.forEach(key, function (item) {
-			delete _data[item];
-		});
-	};
+        return this;
+    }
 
-	var _clear = function () {
-		_data = {};
-	};
-
-	return {
-		get: _get,
-		set: _set,
-		has: _has,
-		remove: _remove,
-		clear: _clear
-	};
-});
+    /**
+     * Remove all storage content under prefix
+     */
+    clean() {
+        this.remove(this.getKeys());
+    }
+}

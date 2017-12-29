@@ -1,0 +1,20 @@
+{
+  "name": "webStorage",
+  "version": "1.0.0",
+  "description": "Javascript class to manage localStorage for multiple app istance on the same domain",
+  "main": "webStorage.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aventure-cloud/webStorage.git"
+  },
+  "keywords": [],
+  "author": "Valerio Barbera <valerio@aventuresrl.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aventure-cloud/webStorage/issues"
+  },
+  "homepage": "https://github.com/aventure-cloud/webStorage#readme"
+}
