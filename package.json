@@ -1,0 +1,32 @@
+{
+  "name": "WebStorage",
+  "version": "1.0.0",
+  "description": "Javascript class to manage localStorage for multiple app istance on the same domain",
+  "main": "webStorage.js",
+  "scripts": {
+    "build": "babel ./src -d ./lib",
+    "test": "nyc mocha --require babel-core/register",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aventure-cloud/webStorage.git"
+  },
+  "keywords": [],
+  "author": "Valerio Barbera <valerio@aventuresrl.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aventure-cloud/webStorage/issues"
+  },
+  "homepage": "https://github.com/aventure-cloud/webStorage#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "mocha": "^4.1.0",
+    "nyc": "^11.4.1"
+  },
+  "dependencies": {
+    "D": "^1.0.0",
+    "eslint": "^4.14.0"
+  }
+}
