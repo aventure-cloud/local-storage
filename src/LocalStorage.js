@@ -1,6 +1,6 @@
 "use strict";
 
-class WebStorage {
+class LocalStorage {
 
     constructor(config) {
         this.config(config);
@@ -139,4 +139,4 @@ class WebStorage {
     }
 }
 
-export default WebStorage;
+export default LocalStorage;

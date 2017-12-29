@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import WebStorage from '../src/WebStorage';
+import LocalStorage from '../src/LocalStorage';
 
 const testSamples = [
     { input: {key: 'test', value: 'A'}, expectedResult: 'A', description: 'should return simple string' },
@@ -9,7 +9,7 @@ const testSamples = [
 
 describe('Array', () => {
 
-    let storage = new WebStorage();
+    let storage = new LocalStorage();
 
     testSamples.forEach((sample) => {
 

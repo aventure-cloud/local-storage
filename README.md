@@ -1,18 +1,18 @@
-# Web Storage
+# Local Storage
 Javascript class to save data (scalar values, object, array) into browser local storage for web and mobile app.
 
 Native local storage allow you to store only primitive data type. This module allow you to store JSON objects and Array also using just one method. 
 
 ## Install
 ```
-npm install --save WebStorage
+npm install --save local-storage-js
 ```
 
 ### Use
 ```javascript
-import WebStorage from 'WebStorage';
+import LocalStorage from 'LocalStorage';
 
-const storage = new WebStorage();
+const storage = new LocalStorage();
 ```
 
 ### Using prefix

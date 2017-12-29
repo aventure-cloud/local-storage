@@ -1,5 +1,5 @@
 {
-  "name": "WebStorage",
+  "name": "local-storage-bridge",
   "version": "1.0.0",
   "description": "Javascript class to manage localStorage for multiple app istance on the same domain",
   "main": "webStorage.js",
