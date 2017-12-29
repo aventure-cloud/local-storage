@@ -17,7 +17,7 @@ class LocalStorage {
         }, config);
     }
 
-    get prefix(){
+    prefix(){
         return this.config.prefix;
     }
 
