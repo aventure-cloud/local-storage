@@ -5,6 +5,8 @@
 
 # User-specific stuff:
 .idea/
+node_modules/
+lib/
 
 ## File-based project format:
 *.iws
