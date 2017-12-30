@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import LocalStorage from '../src/LocalStorage';
+import LocalStorage from '../src';
 
 const testSamples = [
     { input: {key: 'test', value: 'A'}, expectedResult: 'A', description: 'should return simple string' },

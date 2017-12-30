@@ -1,6 +1,6 @@
 {
   "name": "local-storage-bridge",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Javascript class to manage localStorage for multiple app istance on the same domain",
   "main": "lib/index.js",
   "scripts": {

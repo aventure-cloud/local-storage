@@ -20,7 +20,7 @@ You can set prefix that will be added before each key
 to distinguish same key between more apps. 
 
 ```javascript
-const storage = new WebStorage({ prefix: 'myapp_name_' });
+const storage = new LocalStorage({ prefix: 'myapp_name_' });
 ```
 Add prefix is similar to create a "namespace" for your app. 
 If you set prefix, all subsequent operation (get, set, remove) 
