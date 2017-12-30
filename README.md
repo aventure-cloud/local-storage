@@ -1,12 +1,21 @@
 # Local Storage
-Javascript class to save data (scalar values, object, array) into browser local storage for web and mobile app.
+Javascript class to save data (scalar values, object, array) 
+into browser local storage for web and mobile app.
 
-Native local storage allow you to store only primitive data type. This module allow you to store JSON objects and Array also using just one method. 
+Native local storage allow you to store only primitive data type. 
+This module allow you to store JSON objects and Array too 
+using one method.
+
+
+- **Author:** Valerio Barbera - [valerio@aventuresrl.com](mailto:valerio@aventuresrl.com)
+- **Author Website:** [www.aventuresrl.com](target="_blank":https://www.aventuresrl.com) 
+
 
 ## Install
 ```
 npm install --save local-storage-bridge
 ```
+
 
 ### Use
 ```javascript
@@ -14,6 +23,7 @@ import LocalStorage from 'LocalStorage';
 
 const storage = new LocalStorage();
 ```
+
 
 ### Using prefix
 You can set prefix that will be added before each key 
@@ -28,6 +38,7 @@ will take effect on local storage params created under this prefix namespace.
 Into more apps you can use the same local storage params names but 
 with different prefix they do not overwrite.
 
+
 ### Single value
 Classic usage of local storage.
 ```javascript
@@ -37,6 +48,7 @@ storage.set('key2', 3);
 console.log(storage.all());
 ```
 
+
 ### JSON Object
 When you put JSON object into set method, webStorage recognizes input and it serialize object. When you call get, webStorage return your original object.
 ```javascript
@@ -45,12 +57,14 @@ storage.set('key3', {title: 'JSON Object'});
 console.log(storage.all());
 ```
 
+
 ### Array 
 ```javascript
 storage.set('key4', [{title: 'Array of objects'}, {title: 'Array of objects'}]);
 
 console.log(storage.all());
 ```
+
 
 ## Remove
 Remove a single value:
