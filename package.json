@@ -1,6 +1,6 @@
 {
-  "name": "@aventure-cloud/local-storage-bridge",
-  "version": "1.0.6",
+  "name": "@aventure-cloud/local-storage",
+  "version": "0.0.1",
   "description": "Javascript class to manage localStorage for multiple app istance on the same domain",
   "main": "lib/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aventure-cloud/local-storage-bridge.git"
+    "url": "git+https://github.com/aventure-cloud/local-storag.git"
   },
   "keywords": [],
   "author": {
@@ -20,9 +20,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/aventure-cloud/local-storage-bridge/issues"
+    "url": "https://github.com/aventure-cloud/local-storage/issues"
   },
-  "homepage": "https://github.com/aventure-cloud/local-storage-bridge#readme",
+  "homepage": "https://github.com/aventure-cloud/local-storage#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
