@@ -1,5 +1,5 @@
 {
-  "name": "local-storage-bridge",
+  "name": "@aventure-cloud/local-storage-bridge",
   "version": "1.0.6",
   "description": "Javascript class to manage localStorage for multiple app istance on the same domain",
   "main": "lib/index.js",
