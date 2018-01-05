@@ -1,6 +1,6 @@
 {
   "name": "@aventure-cloud/local-storage",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Javascript class to manage localStorage for multiple app istance on the same domain",
   "main": "lib/index.js",
   "scripts": {

@@ -75,6 +75,14 @@ console.log(storage.all());
 ```
 
 
+Or an array of keys:
+```javascript
+storage.remove(['key1', 'key2']);
+
+console.log(storage.all());
+```
+
+
 Clean all storage content:
 ```javascript
 storage.clean();

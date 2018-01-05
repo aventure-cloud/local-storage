@@ -120,7 +120,7 @@ class LocalStorage {
     remove(key) {
         if (Array.isArray(key)) {
             for (let i = 0; i < key.length; i++) {
-                if (typeof key[i] === 'string' && this.has(this._composeKey(key[i]))) {
+                if (typeof key[i] === 'string' && this.has(key[i])) {
                     window.localStorage.removeItem(this._composeKey(key[i]));
                 }
             }
