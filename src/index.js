@@ -101,7 +101,7 @@ class LocalStorage {
      *
      * @param key
      * @param value
-     * @returns {WebStorage}
+     * @returns {LocalStorage}
      */
     set(key, value) {
         if (typeof value === "object" || Array.isArray(value))
@@ -114,14 +114,16 @@ class LocalStorage {
     /**
      * Remove an item from storage
      *
-     * @param key
+     * @param String|Array key
+     * @param Boolean noPrefix
      * @returns {LocalStorage}
      */
-    remove(key) {
-        let keys = Array.isArray(key) ? key : [key];
+    remove(keys, usePrefix=false) {
+        keys = Array.isArray(keys) ? keys : [keys];
 
         for (let i = 0; i < keys.length; i++) {
-            window.localStorage.removeItem(this._composeKey(keys[i]));
+            let key = usePrefix ? keys[i] : this._composeKey(keys[i]);
+            window.localStorage.removeItem(key);
         }
 
         return this;
@@ -131,7 +133,7 @@ class LocalStorage {
      * Remove all storage content under prefix
      */
     clean() {
-        this.remove(this.getAllKeys());
+        this.remove(this.getAllKeys(), true);
     }
 }
 
