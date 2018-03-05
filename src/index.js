@@ -72,7 +72,7 @@ class LocalStorage {
     all() {
         let result = [];
         for (let key in window.localStorage) {
-            if (key.indexOf(this.prefix) !== -1) {
+            if (key.indexOf(this.prefix()) !== -1) {
                 result[key] = window.localStorage[key];
             }
         }
@@ -84,12 +84,12 @@ class LocalStorage {
      *
      * @returns {Array}
      */
-    getKeys() {
+    getAllKeys() {
         let result = [];
         for (let key in window.localStorage) {
-            if (this.prefix === '') {
+            if (this.prefix() === '') {
                 result.push(key);
-            } else if (key.indexOf(this.prefix) !== -1) {
+            } else if (key.indexOf(this.prefix()) !== -1) {
                 result.push(key);
             }
         }
@@ -115,17 +115,13 @@ class LocalStorage {
      * Remove an item from storage
      *
      * @param key
-     * @returns {WebStorage}
+     * @returns {LocalStorage}
      */
     remove(key) {
-        if (Array.isArray(key)) {
-            for (let i = 0; i < key.length; i++) {
-                if (typeof key[i] === 'string' && this.has(key[i])) {
-                    window.localStorage.removeItem(this._composeKey(key[i]));
-                }
-            }
-        } else if (typeof key === 'string' && this.has(key)) {
-            window.localStorage.removeItem(this._composeKey(key));
+        let keys = Array.isArray(key) ? key : [key];
+
+        for (let i = 0; i < keys.length; i++) {
+            window.localStorage.removeItem(this._composeKey(keys[i]));
         }
 
         return this;
@@ -135,7 +131,7 @@ class LocalStorage {
      * Remove all storage content under prefix
      */
     clean() {
-        this.remove(this.getKeys());
+        this.remove(this.getAllKeys());
     }
 }
 
