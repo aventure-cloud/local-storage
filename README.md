@@ -7,8 +7,8 @@ This module allow you to store JSON objects and Array too
 using one method.
 
 
-- **Author:** Valerio Barbera - [valerio@aventuresrl.com](mailto:valerio@aventuresrl.com)
-- **Author Website:** [www.aventuresrl.com](target="_blank":https://www.aventuresrl.com) 
+- **Author:** Valerio Barbera - [support@gistmetrics.com](mailto:support@gistmetrics.com)
+- **Author Website:** [www.gistmetrics.com](target="_blank":https://www.gistmetrics.com) 
 
 
 ## Install
